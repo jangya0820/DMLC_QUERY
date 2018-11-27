@@ -1,11 +1,11 @@
--- ÀüÃ¼ Á¶È¸
+-- ì „ì²´ ì¡°íšŒ
 SELECT ADMIN_ID
      , ADMIN_PWD
      , NAME
      , FAIL_CNT
   FROM HOME_ADMIN;
 
--- admin, test ¸¸ Á¶È¸
+-- admin, test ë§Œ ì¡°íšŒ
 SELECT ADMIN_ID
      , ADMIN_PWD
      , NAME
@@ -13,15 +13,21 @@ SELECT ADMIN_ID
   FROM HOME_ADMIN
  WHERE ADMIN_ID IN ('admin', 'test');
 
--- id ¿©·¯ °³ FAIL_CNT¸¦ 0À¸·Î update
+-- id ì—¬ëŸ¬ ê°œ FAIL_CNTë¥¼ 0ìœ¼ë¡œ update
 UPDATE HOME_ADMIN
   SET FAIL_CNT = 0
  WHERE ADMIN_ID IN ('test', 'info');
 
--- update (ÃÖÁ¾)
--- FAIL_CNT´Â 0À¸·Î ÃÊ±âÈ­
--- ADMIN_PWD´Â 1111·Î ÃÊ±âÈ­
+-- update (ìµœì¢…)
+-- FAIL_CNTëŠ” 0ìœ¼ë¡œ ì´ˆê¸°í™”
+-- ADMIN_PWDëŠ” 1111ë¡œ ì´ˆê¸°í™”
 UPDATE HOME_ADMIN
-  SET FAIL_CNT = 0						-- ºñ¹Ð¹øÈ£ Æ²¸° È½¼ö 0À¸·Î ÃÊ±âÈ­
-    , ADMIN_PWD = 1111					-- password ÃÊ±âÈ­
- WHERE ADMIN_ID = :P_FAILCNT_ID;	-- ÇØ´ç id ÀÔ·Â
+  SET FAIL_CNT = 0						-- ë¹„ë°€ë²ˆí˜¸ í‹€ë¦° íšŸìˆ˜ 0ìœ¼ë¡œ ì´ˆê¸°í™”
+    , ADMIN_PWD = 1111					-- password ì´ˆê¸°í™”
+ WHERE ADMIN_ID = :P_FAILCNT_ID;	-- í•´ë‹¹ id ìž…ë ¥
+
+-- 181127 ì¿¼ë¦¬ ë„˜ê¹€
+UPDATE HOME_ADMIN
+  SET FAIL_CNT = 0						-- ë¹„ë°€ë²ˆí˜¸ í‹€ë¦° íšŸìˆ˜ 0ìœ¼ë¡œ ì´ˆê¸°í™”
+    , ADMIN_PWD = 1111					-- password 1111ë¡œ ì´ˆê¸°í™”
+ WHERE ADMIN_ID = 'admin';			-- id: admin
